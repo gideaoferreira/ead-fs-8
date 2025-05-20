@@ -1,3 +1,5 @@
+# font VS CODE = 'JetBrains Mono', monospace
+
 # Introdução a Lógica de Programação
 
 ##### O que é Lógica
