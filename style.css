@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    & nav {
+        background-color: wheat;
+        position: absolute;
+        width: 260px;
+        height: 100%;
+        transition: width 0.8s ease;
+
+        &.collapse {
+            width: 90px;
+        }
+    }
+
+    & header {
+        background-color: lightgreen;
+        position: absolute;
+        width: calc(100% - 260px);
+        right: 0;
+        transition: width 0.8s ease;
+
+        &.collapse {
+            width: calc(100% - 90px);
+        }
+    }
+
+    & main {
+        background-color: lightblue;
+        position: absolute;
+        width: calc(100% - 260px);
+        right: 0;
+        top: 20px;
+        height: calc(100% - 20px);
+        transition: width 0.8s ease;
+
+        &.collapse {
+            width: calc(100% - 90px);
+        }
+    }
+}
