@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+        integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="main-navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tasks.html">Tarefas</a></li>
+                <li><a href="users.html">Usuários</a></li>
+            </ul>
+            <button type="button" class="btn btn-primary" id="collpse-layout">
+                << </button>
+        </nav>
+        <header class="app-header">
+            <h5>Olá, Fulano!</h5>
+        </header>
+        <main class="main-content">
+            <h1 class="mb-5">Dashboard de usuário</h1>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Cadastrar usuário
+            </button>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cadastro de usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="user-form">
+                                <div class="mb-3">
+                                    <label for="user-name" class="form-label">Nome</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Digite o nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lastname" class="form-label">Sobrenome</label>
+                                    <input type="text" name="lastname" class="form-control" placeholder="Digite o sobrenome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user-email" class="form-label">E-mail</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Digite o e-mail"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone-number" class="form-label">Telefone</label>
+                                    <input type="text" name="phoneNumber" class="form-control"
+                                        placeholder="Digite o telefone" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="add-user">Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

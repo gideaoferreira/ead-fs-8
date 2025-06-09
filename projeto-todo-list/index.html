@@ -14,61 +14,69 @@
         <nav class="main-navbar">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="tasks.html">Tarefas</a></li>
+                <li><a href="users.html">Usuários</a></li>
             </ul>
-            <button id="collpse-layout"><<</button>
+            <button type="button" class="btn btn-primary" id="collpse-layout">
+                << </button>
         </nav>
-        <header class="header">
+        <header class="app-header">
             <h5>Olá, Fulano!</h5>
         </header>
         <main class="main-content">
-            <h1>Welcome to My Website</h1>
-            <p class="description text text-center text-blue">
-                This is a simple HTML document with a navigation
-                bar and a main content area.
-            </p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Adicionar tarefa    </button>
+            <h1 class="mb-5">Dashboard</h1>
+            <button
+                type="button"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+            >
+                Adicionar tarefa
+            </button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Adicionar tarefa</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                        <form id="todo-form">
+                            <div class="mb-3">
+                                <label for="todo-input" class="form-label">Nova Tarefa</label>
+                                <input type="text" name="task" class="form-control" id="todo-input" placeholder="Digite a tarefa aqui" required>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="status" id="flexCheckChecked">
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Atividade concluída
+                                </label>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="modal-footer d-flex justify-content-between">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-primary" id="btn-modal-todo" >Cadastrar</button>
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Atividade</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="todo-list">
-                    <tr>
-                        <td>Criar o conteudo da próxima aula</td>
-                        <td>
-                            <button class="btn btn-success">Concluir</button>
-                            <button class="btn btn-danger">Excluir</button>
-                        </td>
-                    </tr>
+                <tbody id="table-body">
                 </tbody>
             </table>
         </main>
     </div>
-    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
         integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="./script.js"></script>
 </body>
 </html>
