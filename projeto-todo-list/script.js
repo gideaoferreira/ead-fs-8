@@ -25,7 +25,52 @@ btnCollapseLayout.addEventListener('click', () => {
 
 const btnModalTodo = document.getElementById('btn-modal-todo');
 
+const tableBody = document.getElementById('table-body');
+
+function fillBodyTable(list, body) {
+    let statusTask = 'Concluído'; 
+    body.innerHTML = ``;
+    list.forEach((item, index) => {
+        if (!item.status) {
+            statusTask = 'Em andamento';
+        }
+        body.innerHTML +=`
+            <tr>
+                <td>${item.task}</td>
+                <td>${statusTask}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="deleteTask(${index})">Excluir</button>
+                    <button class="btn btn-success btn-sm" ${item.status === 'on' ? 'disabled' : ''}>Concluir</button>
+                </td>
+            </tr>
+        `
+    })
+}
+
+function deleteTask(taskIndex) {
+    const dataTaskList = localStorage.getItem('tasks');
+    let taskList = JSON.parse(dataTaskList);
+
+    taskList.splice(taskIndex, 1);
+
+    fillBodyTable(taskList, tableBody);
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+}
+
 if (btnModalTodo) {
+    // Pega todas as tarefas do localStorage
+    const dataTaskList = localStorage.getItem('tasks');
+
+    // // Crio um array de tarefas
+    let taskList = [];
+
+    // // Se já existir tarefas no localStorage, converto de string para array
+    if (dataTaskList) {
+        taskList = JSON.parse(dataTaskList);
+    }
+
+    fillBodyTable(taskList, tableBody);
+
     btnModalTodo.addEventListener('click', () => {
         const todoForm = document.getElementById('todo-form');
         const dataForm = new FormData(todoForm);
@@ -33,22 +78,24 @@ if (btnModalTodo) {
         
         const tableBody = document.getElementById('table-body');
     
-        let statusTask = 'Concluído'; 
-        if (!dataTask.status) {
-            statusTask = 'Em andamento';
+        // Pega todas as tarefas do localStorage
+        const dataTaskList = localStorage.getItem('tasks');
+
+        // Crio um array de tarefas
+        let taskList = [];
+
+        // Se já existir tarefas no localStorage, converto de string para array
+        if (dataTaskList) {
+            taskList = JSON.parse(dataTaskList);
         }
-    
-        tableBody.innerHTML +=`
-            <tr>
-                <td>${dataTask.task}</td>
-                <td>${statusTask}</td>
-                <td>
-                    <button class="btn btn-danger btn-sm">Excluir</button>
-                    <button class="btn btn-success btn-sm" ${dataTask.status === 'on' ? 'disabled' : ''}>Concluir</button>
-                </td>
-            </tr>
-        `
-        console.log(dataTask);
+
+        // Adiciono a nova tarefa ao array
+        taskList.push(dataTask)
+
+        // Adiciono as tarefas ao localStorage
+        localStorage.setItem('tasks', JSON.stringify(taskList));
+        
+        fillBodyTable(taskList, tableBody);
     }); 
 }
 
