@@ -25,3 +25,7 @@ O método `getItem` é usado para recuperar um item do `localStorage`. Ele receb
 
 Exemplo:
 const user = JSON.parse(localStorage.getItem('user'));
+
+# CRUD ?
+
+- Create, Read, Update, Delete

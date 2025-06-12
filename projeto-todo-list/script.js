@@ -23,7 +23,20 @@ btnCollapseLayout.addEventListener('click', () => {
     }
 })
 
-const btnModalTodo = document.getElementById('btn-modal-todo');
+const toastLiveExample = document.getElementById('liveToast')
+const toastBootstrap = new bootstrap.Toast(toastLiveExample, {
+    autohide: true,
+    delay: 2000
+})
+
+
+const addTaskModal = document.getElementById('addTaskModal');
+const addTaskModalInstance = new bootstrap.Modal(addTaskModal);
+const btnAddTaskModal = document.getElementById('btnAddTaskModal');
+
+btnAddTaskModal.addEventListener('click', () => {
+    addTaskModalInstance.toggle();
+});
 
 const tableBody = document.getElementById('table-body');
 
@@ -39,12 +52,31 @@ function fillBodyTable(list, body) {
                 <td>${item.task}</td>
                 <td>${statusTask}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" onclick="deleteTask(${index})">Excluir</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteTaskModal('${item.task}', ${index})">Excluir</button>
                     <button class="btn btn-success btn-sm" ${item.status === 'on' ? 'disabled' : ''}>Concluir</button>
                 </td>
             </tr>
         `
     })
+}
+let taskIndexToDelete = null;
+const deleteTaskModalElement = document.getElementById('deleteTaskModal');
+const deleteTaskModalInstace = new bootstrap.Modal(deleteTaskModalElement);
+
+const btnDeleteTask = document.getElementById('btnDeleteModalTodo');
+btnDeleteTask.addEventListener('click', () => {
+    deleteTask(taskIndexToDelete);
+    deleteTaskModalInstace.toggle();
+});
+
+function deleteTaskModal(task, index) {
+    const h5TaskNameToDelet = document.getElementById('taskNameToDelet');
+    deleteTaskModalInstace.toggle();
+    
+    h5TaskNameToDelet.innerText = task;
+    taskIndexToDelete = index
+
+    console.log(task, index);
 }
 
 function deleteTask(taskIndex) {
@@ -57,6 +89,7 @@ function deleteTask(taskIndex) {
     localStorage.setItem('tasks', JSON.stringify(taskList));
 }
 
+const btnModalTodo = document.getElementById('btn-modal-todo');
 if (btnModalTodo) {
     // Pega todas as tarefas do localStorage
     const dataTaskList = localStorage.getItem('tasks');
@@ -96,6 +129,9 @@ if (btnModalTodo) {
         localStorage.setItem('tasks', JSON.stringify(taskList));
         
         fillBodyTable(taskList, tableBody);
+        todoForm.reset();
+        addTaskModalInstance.toggle();
+        toastBootstrap.show()
     }); 
 }
 
