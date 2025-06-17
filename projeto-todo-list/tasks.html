@@ -27,7 +27,7 @@
         </header>
         <main class="main-content">
             <div class="toast-container position-fixed top-0 end-0 p-3">
-                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="liveToastCreate" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header bg-success text-white">
                         <strong class="me-auto">Atividade cadastrada com sucesso!</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -35,7 +35,41 @@
                     <div class="toast-body">
                         Sua atividade foi cadastrada com sucesso e já está visível na tabela abaixo.
                     </div>
-                </div>        </div>
+                </div>
+            </div>
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="liveToastEdit" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-primary text-white">
+                        <strong class="me-auto">Atividade editada com sucesso!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Sua atividade foi editada com sucesso e já está atualizada na tabela abaixo.
+                    </div>
+                </div>
+            </div>
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="liveToastDelete" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-danger text-white">
+                        <strong class="me-auto">Atividade deletada com sucesso!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Sua atividade foi deleta com sucesso e já está não está mais visível na tabela abaixo.
+                    </div>
+                </div>
+            </div>
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="liveToastFinish" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-info text-white">
+                        <strong class="me-auto">Atividade concluída com sucesso!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Sua atividade foi concluída com sucesso e já está atualizada na tabela abaixo.
+                    </div>
+                </div>
+            </div>
             <h1 class="mb-5">Dashboard de atividades</h1>
             <button type="button" class="btn btn-primary mb-3" id="btnAddTaskModal">
                 Adicionar tarefa
@@ -69,6 +103,36 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title text-white" id="exampleModalLabel">Editar tarefa</h5>
+                            <button type="button" class="text-white btn" data-bs-dismiss="modal">X</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="edit-todo-form">
+                                <div class="mb-3">
+                                    <label for="todo-input" class="form-label">Tarefa</label>
+                                    <input type="text" name="task" class="form-control" id="inputTaskEdit"
+                                        placeholder="Digite a tarefa aqui" required>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="status" id="inputStatusEdit">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Atividade concluída
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="btn-edit-modal-todo">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -94,6 +158,35 @@
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-danger" id="btnDeleteModalTodo">Deletar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="doneTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info">
+                            <h5 class="modal-title text-white" id="exampleModalLabel">Concluir tarefa</h5>
+                            <button type="button" class="text-white btn" data-bs-dismiss="modal" aria-label="Close">X
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center mb-0">Você tem certeza que deseja concluir essa tarefa?</p>
+                            <h5 class="text-center" id="taskNameToDone"></h5>
+                            <div class="alert alert-info text-center mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 24 24"><!-- Icon from CodeX Icons by CodeX - https://github.com/codex-team/icons/blob/master/LICENSE -->
+                                    <g fill="none" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" d="m9.2 12l1.859 1.859a.2.2 0 0 0 .282 0L14.7 10.5" />
+                                        <rect width="14" height="14" x="5" y="5" rx="4" />
+                                    </g>
+                                </svg>
+                                <p class="mb-0">Você poderá alterar o status da atividade a qualquer momento</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-info" id="btnFinishModalTodo">Concluir</button>
                         </div>
                     </div>
                 </div>
