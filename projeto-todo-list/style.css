@@ -10,7 +10,7 @@
     height: 100vh;
 
     & .main-navbar {
-        background-color: rgb(42, 74, 217);
+        background-color: rgb(241, 241, 241);
         position: absolute;
         width: 260px;
         height: 100%;
@@ -21,16 +21,30 @@
             padding: 0;
             margin: 0;
 
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        
             & li {
-                padding: 10px 20px;
+                width: 100%;
             }
 
             & li a {
+                padding:6px 8px 6px 20px;
+                background-color: rgb(107, 107, 255);
+                display: block;
                 color: white;
+                text-decoration: none;
             }
         }
         &.app-collapse {
             width: 90px;
+        }
+
+        & .collpse-layout {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     }
 
