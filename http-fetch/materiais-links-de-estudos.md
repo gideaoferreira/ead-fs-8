@@ -36,3 +36,7 @@ https://www.figma.com/design/Z3e5E8IprkSo6pNQ8emW7w/Simple-ToDo-List-Design--Com
 - https://www.httpstatus.com.br/ (Status Code)
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods (Métodos)
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API Fetch API Js
+
+# API de dados Fake
+
+https://jsonplaceholder.typicode.com
