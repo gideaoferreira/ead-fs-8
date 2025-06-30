@@ -1,5 +1,9 @@
 const tbody = document.querySelector('tbody');
 
+fetch('https://dummyjson.com/products')
+    .then(res => res.json())
+    .then(res => console.log(res));
+
 //resquet
 fetch('https://jsonplaceholder.typicode.com/users')
     .then((response) => response.json())

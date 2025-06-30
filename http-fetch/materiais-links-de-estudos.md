@@ -40,3 +40,4 @@ https://www.figma.com/design/Z3e5E8IprkSo6pNQ8emW7w/Simple-ToDo-List-Design--Com
 # API de dados Fake
 
 https://jsonplaceholder.typicode.com
+https://dummyjson.com/products
